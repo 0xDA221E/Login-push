@@ -31,7 +31,7 @@ else
     Once your bot is created you will recieve a token, please enter that token here :"
     read TELEGRAM_HTTPTOKEN
     
-    botname=$(curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getMe' | cat | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"]["username"])')
+    botname=$(curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getMe' | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"]["username"])')
     echo "Is your bot called $botname ?"
     read answer
       if [[ $answer!='y' ]]; then
@@ -43,7 +43,6 @@ else
 
     tgname=$(
       curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' | 
-      cat |
       python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"][0]["message"]["from"]["first_name"] + " "+  obj["result"][0]["message"]["from"]["last_name"]);'
       )
 
@@ -55,7 +54,6 @@ else
     fi
     TELEGRAM_USERID=$(
       curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' | 
-      cat | 
       python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"][0]["message"]["from"]["id"]);'
       )
     
