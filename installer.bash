@@ -64,4 +64,5 @@ else
     chmod +x /usr/local/bin/login-notification-telegram.bash
     echo "session optional       pam_exec.so /usr/local/bin/login-notification-telegram.bash" >> /etc/pam.d/common-session
     echo "Setup Complete"
+  fi
 fi
