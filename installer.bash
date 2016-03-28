@@ -45,10 +45,10 @@ else
 
     echo "Are you "$tgname" ? (y/n)"
     read answer
-    if [[ $answer=='n' ]]; do
+    if [[ $answer=='n' ]]; then
       echo "Exiting"
       exit
-      
+    fi
     TELEGRAM_USERID=$(
       curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' | 
       cat | 
