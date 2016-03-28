@@ -58,9 +58,10 @@ else
       ')
     
     sed -i -e "s/YOURUSERID/$TELEGRAM_USERID/g" login-notification-telegram.bash
+    sed -i -e "s/YOURTOKEN/$TELEGRAM_HTTPTOKEN/g" login-notification-telegram.bash
   
     cp login-notification-telegram.bash /usr/local/bin/login-notification-telegram.bash
     chmod +x /usr/local/bin/login-notification-telegram.bash
     echo "session optional       pam_exec.so /usr/local/bin/login-notification-telegram.bash" >> /etc/pam.d/common-session
-
+    echo "Setup Complete"
 fi
