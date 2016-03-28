@@ -31,13 +31,6 @@ else
     Once your bot is created you will recieve a token, please enter that token here :"
     read TELEGRAM_HTTPTOKEN
     
-    botname=$(curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getMe' | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"]["username"])')
-    echo "Is your bot called $botname ?"
-    read answer
-      if [[ $answer!='y' ]]; then
-        echo "Exiting"
-        exit
-     fi
     echo "Please start a conversation with the bot. DO 	NOT send any messages, just press Start. Once done press enter"
     read
 
@@ -48,7 +41,7 @@ else
 
     echo "Are you "$tgname" ? (y/n)"
     read answer
-    if [[ $answer!='y' ]]; then
+    if [[ $answer != "y" ]]; then
       echo "Exiting"
       exit
     fi
