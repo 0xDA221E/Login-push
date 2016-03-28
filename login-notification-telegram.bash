@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+trap ctrl_c INT
+function ctrl_c()
+{
+        printf "trapped Ctrl+C"
+}
+
+if [[ $PAM_TYPE == "close_session" ]]; then
+        echo "User logged out."
+        exit 0
+fi
+
+if [[ -z "$PAM_RHOST" ]]; then
+        PAM_RHOST="localhost"
+fi
+
+if [[ -z "$PAM_RUSER" ]]; then
+        PAM_RUSER="[UNKNOWN]"
+fi
+
+DATE=$(date)
+
+### TELEGRAM SETTINGS ###
+TELEGRAM_USERID=YOURUSERID
+TELEGRAM_MESSAGE=$HOSTNAME "Login notification : User <b>$PAM_USER</b> opened a session from <b>$PAM_RUSER@$PAM_RHOST</b> through <b>$PAM_SERVICE</b> at <i>$DATE</i>."
+### ENDOF TELEGRAM SETTINGS ###
+
+curl -s  > /dev/null 2>&1 &

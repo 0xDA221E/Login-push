@@ -22,11 +22,11 @@ fi
 DATE=$(date)
 
 ### PUSHOVER SETTINGS ###
-PUSHOVER_URL="https://api.pushover.net/1/messages.json"
+PUSHOVER_URL="https://apih.pushover.net/1/messages.json"
 PUSHOVER_APP_TOKEN="YOURAPPTOKEN"
 PUSHOVER_USER_TOKEN="YOURUSERTOKEN"
 
-PUSHOVER_TITLE="Kydara login notification"
+PUSHOVER_TITLE=$HOSTNAME" Login notification"
 PUSHOVER_MESSAGE="User <b>$PAM_USER</b> opened a session from <b>$PAM_RUSER@$PAM_RHOST</b> through <b>$PAM_SERVICE</b> at <i>$DATE</i>."
 PUSHOVER_PRIORITY="0"
 PUSHOVER_HTML="1"
