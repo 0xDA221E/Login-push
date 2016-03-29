@@ -5,6 +5,6 @@ To install, run the following command:
 
 `git clone git@github.com:0xDA221E/Login-push.git && cd Login-push && sudo bash installer.bash install pushmethod`
 
-Currently availible pushmethods are :
+Currently available pushmethods are :
 * pushover
 * telegram
