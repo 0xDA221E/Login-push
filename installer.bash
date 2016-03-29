@@ -17,16 +17,15 @@ else
     echo "Enter your Pushover user key:"
     echo "(Can be viewed at https://pushover.net/ after logging in.)"
     read PUSHOVER_USER_USER_TOKEN
+
+    cp login-notification-pushover.bash login-notification-pushover.bash.mod
+    sed -i -e "s/YOURPUSHOVERAPPTOKEN/$PUSHOVER_USER_APP_TOKEN/g" login-notification-pushover.bash.mod
+    sed -i -e "s/YOURPUSHOVERUSERTOKEN/$PUSHOVER_USER_USER_TOKEN/g" login-notification-pushover.bash.mod
   
-    sed -i -e "s/YOURPUSHOVERAPPTOKEN/$PUSHOVER_USER_APP_TOKEN/g" login-notification-pushover.bash
-    sed -i -e "s/YOURPUSHOVERUSERTOKEN/$PUSHOVER_USER_USER_TOKEN/g" login-notification-pushover.bash
-  
-    cp login-notification-pushover.bash /usr/local/bin/login-notification-pushover.bash
+    cp login-notification-pushover.bash.mod /usr/local/bin/login-notification-pushover.bash
     chmod +x /usr/local/bin/login-notification-pushover.bash
     echo "session optional       pam_exec.so /usr/local/bin/login-notification-pushover.bash" >> /etc/pam.d/common-session
-  fi
-
-  if [[ $2 == "telegram" ]]; then
+  elif [[ $2 == "telegram" ]]; then
     echo "In order to recieve notifications via telegram you must create a bot. to do so, add @BotFather and follow the instructions.\n
     Once your bot is created you will recieve a token, please enter that token here :"
     read TELEGRAM_HTTPTOKEN
@@ -34,7 +33,7 @@ else
     echo "Please start a conversation with the bot, and send it a message. Then Press Enter."
     read
     curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' > /dev/null
-    echo "Please send the bot another message then press enter."
+    echo "Please send the bot another message then press Enter."
     read
     tgname=$(
       curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' | 
@@ -52,10 +51,11 @@ else
       python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"][0]["message"]["from"]["id"]);'
       )
       
-    sed -i -e "s/YOURTELEGRAMTOKEN/$TELEGRAM_HTTPTOKEN/g" login-notification-telegram.bash
-    sed -i -e "s/YOURTELEGRAMUSERID/$TELEGRAM_USERID/g" login-notification-telegram.bash
+    cp login-notification-telegram.bash login-notification-telegram.bash.mod
+    sed -i -e "s/YOURTELEGRAMTOKEN/$TELEGRAM_HTTPTOKEN/g" login-notification-telegram.bash.mod
+    sed -i -e "s/YOURTELEGRAMUSERID/$TELEGRAM_USERID/g" login-notification-telegram.bash.mod
   
-    cp login-notification-telegram.bash /usr/local/bin/login-notification-telegram.bash
+    cp login-notification-telegram.bash.mod /usr/local/bin/login-notification-telegram.bash
     chmod +x /usr/local/bin/login-notification-telegram.bash
     echo "session optional       pam_exec.so /usr/local/bin/login-notification-telegram.bash" >> /etc/pam.d/common-session
     echo "Setup Complete"
