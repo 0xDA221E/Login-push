@@ -18,8 +18,8 @@ else
     echo "(Can be viewed at https://pushover.net/ after logging in.)"
     read PUSHOVER_USER_USER_TOKEN
   
-    sed -i -e "s/YOURAPPTOKEN/$PUSHOVER_USER_APP_TOKEN/g" login-notification-pushover.bash
-    sed -i -e "s/YOURUSERTOKEN/$PUSHOVER_USER_USER_TOKEN/g" login-notification-pushover.bash
+    sed -i -e "s/YOURPUSHOVERAPPTOKEN/$PUSHOVER_USER_APP_TOKEN/g" login-notification-pushover.bash
+    sed -i -e "s/YOURPUSHOVERUSERTOKEN/$PUSHOVER_USER_USER_TOKEN/g" login-notification-pushover.bash
   
     cp login-notification-pushover.bash /usr/local/bin/login-notification-pushover.bash
     chmod +x /usr/local/bin/login-notification-pushover.bash
@@ -51,9 +51,9 @@ else
       curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' | 
       python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["result"][0]["message"]["from"]["id"]);'
       )
-    
-    sed -i -e "s/YOURUSERID/$TELEGRAM_USERID/g" login-notification-telegram.bash
-    sed -i -e "s/YOURTOKEN/$TELEGRAM_HTTPTOKEN/g" login-notification-telegram.bash
+      
+    sed -i -e "s/YOURTELEGRAMTOKEN/$TELEGRAM_HTTPTOKEN/g" login-notification-telegram.bash
+    sed -i -e "s/YOURTELEGRAMUSERID/$TELEGRAM_USERID/g" login-notification-telegram.bash
   
     cp login-notification-telegram.bash /usr/local/bin/login-notification-telegram.bash
     chmod +x /usr/local/bin/login-notification-telegram.bash
