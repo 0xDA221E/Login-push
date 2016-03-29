@@ -31,7 +31,7 @@ else
     Once your bot is created you will recieve a token, please enter that token here :"
     read TELEGRAM_HTTPTOKEN
     
-    echo "Please start a conversation with the bot, and send it a message"
+    echo "Please start a conversation with the bot, and send it a message. Then Press Enter"
     read
     curl 'https://api.telegram.org/bot'$TELEGRAM_HTTPTOKEN'/getUpdates?limit=1' > /dev/null
     echo "Please send the bot another message then press enter"
