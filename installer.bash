@@ -33,8 +33,8 @@ function installService() {
 
             local httpToken
 
-            echo "In order to recieve notifications via telegram you must create a bot. to do so, add @BotFather and follow the instructions.\n
-            Once your bot is created you will recieve a token, please enter that token here :"
+            echo "In order to recieve notifications via telegram you must create a bot. to do so, add @BotFather and follow the instructions."
+            echo "Once your bot is created you will recieve a token, please enter that token here :"
             read httpToken
             
             echo "Please start a conversation with the bot, and send it a message. Then Press Enter."
@@ -106,10 +106,21 @@ function installService() {
 
 function updateService() {
     echo "Update"
+    # check if the line at /etc/pam.d/common-session exists
+    # if it does
+    # simply overwrite the bash files
+    # tell the user we succeeded
+    # if it doesn't, tell the user he needs to install first
 }
 
 function uninstallService() {
     echo "Uninstall"
+    # check if everything is in its place
+    # if it does
+    # first remove the line from pam
+    # then remove the bash files
+    # if there are leftovers all over the place, inform the user their installation is incomplete
+    # if nothing exists tell the user it's already uninstalled
 }
 
 if test $# -eq 0; then
