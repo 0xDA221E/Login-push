@@ -114,7 +114,23 @@ function updateService() {
 }
 
 function uninstallService() {
-    echo "Uninstall"
+    local answer
+
+    read -r -p "Are you sure you want to uninstall Login-Push ? [y/N]" answer
+
+    if [[ ! $answer =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        showError "User stopped uninstallation process."
+    fi
+
+    # Check if line exists in /etc/pam.d/common-session
+    egrep login-notification-* /etc/pam.d/common-session > /dev/null
+
+    if test $? -eq 0; then
+        # Line exists
+    else
+        showError "Login-Push is not installed."
+    fi
+
     # check if everything is in its place
     # if it does
     # first remove the line from pam
