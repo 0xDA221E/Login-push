@@ -127,6 +127,7 @@ function uninstallService() {
 
     if test $? -eq 0; then
         cp /etc/pam.d/common-session common-session.bak
+        sed -i '/login-notification/d' /etc/pam.d/common-session
         rm /usr/local/bin/login-notification*bash
         echo "Uninstall complete!"
         exit 0
