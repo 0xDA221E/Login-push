@@ -22,7 +22,7 @@ fi
 DATE=$(date)
 
 ### PUSHOVER SETTINGS ###
-PUSHOVER_URL="https://apih.pushover.net/1/messages.json"
+PUSHOVER_URL="https://api.pushover.net/1/messages.json"
 PUSHOVER_APP_TOKEN="YOURPUSHOVERAPPTOKEN"
 PUSHOVER_USER_TOKEN="YOURPUSHOVERUSERTOKEN"
 
