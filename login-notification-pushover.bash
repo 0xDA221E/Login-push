@@ -31,7 +31,6 @@ PUSHOVER_MESSAGE="User <b>$PAM_USER</b> opened a session from <b>$PAM_RUSER@$PAM
 PUSHOVER_PRIORITY="0"
 PUSHOVER_HTML="1"
 PUSHOVER_SOUND="intermission"
-### ENDOF PUSHOVER SETTINGS ###
 
 if [[ "$PAM_USER" == "root" ]]; then
         PUSHOVER_PRIORITY="1"
@@ -42,5 +41,7 @@ fi
 #if [[ "$PAM_USER" == "john" ]]; then
         #PUSHOVER_USER_TOKEN="ONLYJOHNTOKEN"
 #fi
+
+### ENDOF PUSHOVER SETTINGS ###
 
 curl -s --data token=$PUSHOVER_APP_TOKEN --data user=$PUSHOVER_USER_TOKEN --data-urlencode title="$PUSHOVER_TITLE" --data priority=$PUSHOVER_PRIORITY --data-urlencode message="$PUSHOVER_MESSAGE" --data html=$PUSHOVER_HTML --data sound=$PUSHOVER_SOUND $PUSHOVER_URL > /dev/null 2>&1 &
