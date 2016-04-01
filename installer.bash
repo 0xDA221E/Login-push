@@ -126,17 +126,15 @@ function uninstallService() {
     egrep login-notification-* /etc/pam.d/common-session > /dev/null
 
     if test $? -eq 0; then
-        # Line exists
+        cp /etc/pam.d/common-session common-session.bak
+        sed '/login-notification/d' /etc/pam.d/common-session
+        rm /usr/local/bin/login-notification*bash
+        echo "Uninstall complete!"
+        exit 0
     else
         showError "Login-Push is not installed."
+        exit 1
     fi
-
-    # check if everything is in its place
-    # if it does
-    # first remove the line from pam
-    # then remove the bash files
-    # if there are leftovers all over the place, inform the user their installation is incomplete
-    # if nothing exists tell the user it's already uninstalled
 }
 
 if test $# -eq 0; then
